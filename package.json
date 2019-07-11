@@ -1,0 +1,56 @@
+{
+  "name": "midway-base",
+  "version": "0.0.1",
+  "description": "midway boilerplate",
+  "private": true,
+  "dependencies": {
+    "@types/node": "*",
+    "@waiting/shared-core": "^1.9.2",
+    "egg-cors": "^2.2.0",
+    "egg-scripts": "^2.11.0",
+    "midway": "^1.8.0",
+    "rxjs": "^6.5.2",
+    "rxrunscript": "^5.2.0",
+    "rxxfetch": "^1.14.0"
+  },
+  "devDependencies": {
+    "@types/mocha": "*",
+    "@waiting/eslint-config": "^1.6.1",
+    "cross-env": "^5.2.0",
+    "egg-ci": "^1.12.0",
+    "eslint": "^6.0.0",
+    "midway-bin": "^1.5.0",
+    "midway-mock": "^1.8.0",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.0"
+  },
+  "engines": {
+    "node": ">=10.8.0"
+  },
+  "scripts": {
+    "bp:add": "git remote add bp https://github.com/waitingsong/midway-base",
+    "bp:sync": "git fetch --all -v && git merge bp/master -m \"Merge remote-tracking branch 'bp/master'\"",
+    "devtest": "midway-bin test --ts",
+    "build": "midway-bin build -c",
+    "ci": "npm run cov",
+    "cov": "midway-bin cov --ts",
+    "debug": "cross-env NODE_ENV=local midway-bin debug --ts",
+    "dev": "cross-env NODE_ENV=local midway-bin dev --ts",
+    "lint": "eslint --fix src/**/*.{ts,js} test/**/*.{ts,js}",
+    "link_global": "npm link typescript",
+    "start": "egg-scripts start --daemon --title=egg-server-midway-base --framework=midway",
+    "start_build": "npm run build && cross-env NODE_ENV=development midway-bin dev --ts",
+    "stop": "egg-scripts stop --title=egg-server-midway-base",
+    "test": "npm run lint && npm run devtest",
+    "repo:init": "sh .githooks/init-repo.sh"
+  },
+  "ci": {
+    "version": "10, 12"
+  },
+  "midway-bin-build": {
+    "include": [
+      "app/public",
+      "app/view"
+    ]
+  }
+}

@@ -1,4 +1,5 @@
 package-lock.json
+yarn.lock
 /agent.js
 /app.js
 app/**/*.js
@@ -76,10 +77,12 @@ log.txt
 .vscode/
 
 .idea/
+.ionic/
 .sourcemaps/
 .sass-cache/
 .tmp/
 .versions/
+www/
 dist/
 tmp/
 temp/
@@ -152,6 +155,7 @@ logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+*.un~
 
 # Runtime data
 pids
