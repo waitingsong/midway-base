@@ -4,9 +4,9 @@ export const cors = {
   package: 'egg-cors',
 }
 
-export const kmore = {
+export const fetch = {
   enable: true,
-  package: 'egg-kmore',
+  package: '@waiting/egg-fetch',
 }
 
 export const jwt = {
@@ -14,9 +14,9 @@ export const jwt = {
   package: '@waiting/egg-jwt',
 }
 
-export const fetch = {
-  enable: true,
-  package: '@waiting/egg-fetch',
+export const kmore = {
+  enable: false,
+  package: 'egg-kmore',
 }
 
 // false 禁用全部安全检查用于临时调试

@@ -1,6 +1,6 @@
 import { readFileSync } from 'fs'
 
-import { EggAppInfo, Context } from 'midway'
+import { EggAppInfo } from 'midway'
 import { join } from '@waiting/shared-core'
 
 import { DefaultConfig } from './config.modal'
@@ -34,18 +34,12 @@ export default (appInfo: EggAppInfo) => {
       authOpts: {
         cookie: 'access_token',
         key: 'user',
-        passthrough: testJumpTo,
+        passthrough: false,
       },
-      secret: '123456abc',
+      secret: config.keys, // update it!
     },
     ignore: [/^\/$/u, '/login', '/hello', '/test_sign', '/ip'],
   }
 
   return config
-}
-
-async function testJumpTo(ctx: Context) {
-  return ctx.method === 'GET' && ctx.path === '/test_passthrough_redirect'
-    ? '/test_passthrough_redirect_path'
-    : false
 }

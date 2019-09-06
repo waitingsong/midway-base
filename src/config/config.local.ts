@@ -31,7 +31,6 @@ const master: ClientOpts = {
     acquireConnectionTimeout: 10000,
   },
   tables: genTbListFromType<TbListModel>(),
-  waitConnected: false,
 }
 
 export const kmore: EggKmoreConfig = {
@@ -39,7 +38,6 @@ export const kmore: EggKmoreConfig = {
 }
 
 export const jwt: JwtConfig = {
-  agent: false,
   enable: true, // enable middleware
   client: {
     authOpts: {
