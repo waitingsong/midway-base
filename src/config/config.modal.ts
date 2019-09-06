@@ -1,6 +1,6 @@
 import { EggAppConfig, PowerPartial } from 'midway'
 import { JwtConfig } from '@waiting/egg-jwt'
-import { Config } from 'knex'
+import { Config } from 'egg-kmore'
 
 
 export interface DefaultConfig extends PowerPartial<EggAppConfig> {
