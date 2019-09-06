@@ -5,55 +5,18 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "index.ts",
-      "type": "node",
-      "args": [
-        "-P", "./tsconfig.cjs.json",
-        "src/index.ts"
-      ],
-      "cwd": "${workspaceRoot}",
-      "program": "${workspaceRoot}/node_modules/ts-node/dist/bin.js",
-      "protocol": "inspector",
-      "request": "launch",
-      "runtimeArgs": [
-        "--nolazy"
-      ],
-      "skipFiles": [
-        "${workspaceFolder}/node_modules/rxjs/**/*.js",
-        "<node_internals>/**/*.js"
-      ],
-      "stopOnEntry": false
-    },
-    {
-      "name": "Current TS File",
-      "type": "node",
-      "args": [
-        "-P", "./tsconfig.cjs.json",
-        "${relativeFile}"
-      ],
-      "cwd": "${workspaceRoot}",
-      "program": "${workspaceRoot}/node_modules/ts-node/dist/bin.js",
-      "protocol": "inspector",
-      "request": "launch",
-      "runtimeArgs": [
-        "--nolazy"
-      ],
-      "skipFiles": [
-        "${workspaceFolder}/node_modules/rxjs/**/*.js",
-        "<node_internals>/**/*.js"
-      ],
-      "stopOnEntry": false
-    },
-    {
       "name": "Midway Debug",
       "type": "node",
       "autoAttachChildProcesses": true,
       "console": "integratedTerminal",
       "env": {
-        "NODE_ENV": "local"
+        "NODE_ENV": "local",
+        "PGHOST": "",
+        "PGUSER": "",
+        "PGPASSWORD": "",
       },
       "port": 9229,
-      "preLaunchTask": "TypeScript compile",
+      // "preLaunchTask": "TypeScript compile",
       "protocol": "auto",
       "request": "launch",
       "restart": true,
@@ -65,62 +28,66 @@
       ],
       "runtimeExecutable": "npm",
       "skipFiles": [
-        // "${workspaceFolder}/node_modules/**/*.js",
+        // "${workspaceFolder}/../../node_modules/rxjs/**/*.js",
         "${workspaceFolder}/node_modules/rxjs/**/*.js",
         "<node_internals>/**/*.js"
       ]
     },
     {
-      "name": "Chrome Debug with Karma",
-      "type": "chrome",
-      "address": "localhost",
-      "pathMapping": {
-        "/": "${workspaceRoot}/",
-        "/base/": "${workspaceRoot}/"
-      },
-      "port": 9333,
-      "request": "attach"
-    },
-    {
-      "name": "Egg Debug",
+      "name": "Miday Test",
       "type": "node",
       "autoAttachChildProcesses": true,
       "console": "integratedTerminal",
       "env": {
-        "NODE_ENV": "local"
+        "NODE_ENV": "local",
+        "TS_NODE_PROJECT": "test/tsconfig.json",
+        "PGHOST": "",
+        "PGUSER": "",
+        "PGPASSWORD": "",
       },
       "port": 9229,
-      "preLaunchTask": "watch",
       "protocol": "auto",
       "request": "launch",
       "restart": true,
       "runtimeArgs": [
         "run",
-        "debug",
+        "devtest",
         "--",
         "--inspect-brk"
       ],
       "runtimeExecutable": "npm",
       "skipFiles": [
-        // "${workspaceFolder}/node_modules/**/*.js",
+        // "${workspaceFolder}/../../node_modules/rxjs/**/*.js",
         "${workspaceFolder}/node_modules/rxjs/**/*.js",
         "<node_internals>/**/*.js"
-      ]
+      ],
+      "timeout": 60000
     },
     {
       "name": "Mocha Tests",
       "type": "node",
       "args": [
         "-u",
-        "tdd",
+        "bdd",
         "--timeout",
         "999999",
         "--colors",
-        "${workspaceFolder}/test"
+        "--full-trace",
+        "--bail",
+        "-r", "intelli-espower-loader",
+        "-r", "espower-typescript/guess",
+        "${workspaceFolder}/test/**/**.test.ts"
       ],
+      "env": {
+        "NODE_ENV": "local",
+        "TS_NODE_PROJECT": "test/tsconfig.json",
+        "PGHOST": "",
+        "PGUSER": "",
+        "PGPASSWORD": "",
+      },
       "internalConsoleOptions": "openOnSessionStart",
       "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
-      "request": "launch"
+      "request": "launch",
     }
   ]
 }

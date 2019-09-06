@@ -54,3 +54,4 @@ export function isPathAccessible(path: string): Promise<boolean> {
 export function genRandomInt(max: number): number {
   return Math.floor(Math.random() * Math.floor(max))
 }
+

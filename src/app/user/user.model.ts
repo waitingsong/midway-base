@@ -6,11 +6,27 @@ export interface GetUserOpts {
 }
 
 /**
+ * 库表类型
+ */
+export interface TbListModel {
+  tb_user: User
+  tb_user_detail: UserDetail
+}
+
+/**
  * 用户信息
  */
-export interface UserInfo {
+export interface UserInfo extends User, UserDetail {
+}
+
+
+export interface User {
   uid: number
   user_name: string
-  phone: string
-  email?: string
 }
+export interface UserDetail {
+  uid: number
+  phone: string
+  email: string
+}
+
