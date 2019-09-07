@@ -1,0 +1,99 @@
+{
+  "name": "midway-base",
+  "version": "0.0.0",
+  "description": "midway boilerplate",
+  "private": true,
+  "bin": {},
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "dependencies": {
+    "@waiting/base64": "^4.0.0",
+    "@waiting/egg-fetch": "^0.1.0",
+    "@waiting/egg-jwt": "^2.0.0",
+    "@waiting/shared-core": "3",
+    "@waiting/shared-types": "1",
+    "egg-cors": "^2.2.0",
+    "egg-kmore": "^0.11.0",
+    "egg-scripts": "^2.11.0",
+    "knex": "^0.19.0",
+    "midway": "1",
+    "pg": "^7.11.0",
+    "rxjs": "^6.5.0"
+  },
+  "devDependencies": {
+    "@types/mocha": "5",
+    "@types/node": "12",
+    "@waiting/eslint-config": "2",
+    "cross-env": "5",
+    "eslint": "6",
+    "midway-bin": "1",
+    "midway-mock": "1",
+    "mocha": "6",
+    "nyc": "14",
+    "rimraf": "3",
+    "ts-node": "8",
+    "typescript": "3"
+  },
+  "engines": {
+    "node": ">=10.16.0"
+  },
+  "scripts": {
+    "bp:add": "git remote add bp https://github.com/waitingsong/midway-base",
+    "bp:sync": "git fetch --all -v && git merge bp/master -m \"Merge remote-tracking branch 'bp/master'\"",
+    "build": "midway-bin build",
+    "ci": "cross-env TS_NODE_PROJECT=test/tsconfig.json npm run cov --ts",
+    "clean": "midway-bin clean",
+    "cov": "cross-env TS_NODE_PROJECT=test/tsconfig.json midway-bin cov --ts",
+    "db:gen": "kmore gen --path ./src",
+    "devtest": "cross-env TS_NODE_PROJECT=test/tsconfig.json midway-bin test --ts",
+    "debug": "cross-env NODE_ENV=local midway-bin debug --ts",
+    "dev": "cross-env NODE_ENV=local midway-bin dev --ts",
+    "lint": "eslint --fix {src,test}/**/*.ts",
+    "link_global": "npm link typescript",
+    "release": "standard-version -r",
+    "repo:init": "sh .githooks/init-repo.sh",
+    "start": "egg-scripts start --daemon --title=egg-server-midway-base --framework=midway --ts --workers=4",
+    "start_build": "npm run clean && npm run db:gen && npm run build && cross-env NODE_ENV=development midway-bin dev --ts",
+    "stop": "egg-scripts stop --title=egg-server-midway-base",
+    "test": "npm run lint && npm run devtest"
+  },
+  "midway-bin-clean": [
+    ".vscode/.tsbuildinfo",
+    "dist",
+    "logs",
+    "run"
+  ],
+  "midway-bin-build": {
+    "include": [
+      "app/public",
+      "app/view"
+    ]
+  },
+  "nyc": {
+    "include": [
+      "src/**/*.ts"
+    ],
+    "exclude": [
+      ".githooks",
+      "dist",
+      "node_modules*",
+      "src/bin",
+      "src/domain.ts",
+      "src/interface.ts",
+      "test*",
+      "**/node_modules*",
+      "**/*.d.ts",
+      "**/*.js"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "reporter": [
+      "text-summary",
+      "json",
+      "html"
+    ],
+    "all": true
+  }
+}
