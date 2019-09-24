@@ -41,7 +41,7 @@
   "scripts": {
     "bp:add": "git remote add bp https://github.com/waitingsong/midway-base",
     "bp:sync": "git fetch --all -v && git merge bp/master -m \"Merge remote-tracking branch 'bp/master'\"",
-    "build": "midway-bin build",
+    "build": "npm run db:gen && midway-bin build",
     "ci": "cross-env TS_NODE_PROJECT=test/tsconfig.json npm run cov --ts",
     "clean": "midway-bin clean",
     "cov": "cross-env TS_NODE_PROJECT=test/tsconfig.json midway-bin cov --ts",
@@ -54,9 +54,9 @@
     "release": "standard-version -r",
     "repo:init": "sh .githooks/init-repo.sh",
     "start": "egg-scripts start --daemon --title=egg-server-midway-base --framework=midway --ts --workers=4",
-    "start_build": "npm run clean && npm run db:gen && npm run build && cross-env NODE_ENV=development midway-bin dev --ts",
+    "start_build": "npm run clean && npm run build && cross-env NODE_ENV=development midway-bin dev --ts",
     "stop": "egg-scripts stop --title=egg-server-midway-base",
-    "test": "npm run lint && npm run devtest"
+    "test": "npm run devtest"
   },
   "midway-bin-clean": [
     ".vscode/.tsbuildinfo",

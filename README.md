@@ -11,6 +11,7 @@
 
 ```sh
 npm run repo:init
+npm run dev
 ```
 
 Open url and refreseh page:
