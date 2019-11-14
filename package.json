@@ -8,18 +8,18 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "dependencies": {
-    "@waiting/base64": "^4.0.0",
+    "@waiting/base64": "4",
     "@waiting/egg-fetch": "^0.1.0",
-    "@waiting/egg-jwt": "^2.0.0",
+    "@waiting/egg-jwt": "2",
     "@waiting/shared-core": "3",
     "@waiting/shared-types": "1",
-    "egg-cors": "^2.2.0",
-    "egg-kmore": "^0.11.0",
+    "egg-cors": "2",
+    "egg-kmore": "^0.13.0",
     "egg-scripts": "^2.11.0",
-    "knex": "^0.19.0",
+    "knex": "^0.20.0",
     "midway": "1",
-    "pg": "^7.11.0",
-    "rxjs": "^6.5.0"
+    "pg": "^7.12.0",
+    "rxjs": "6"
   },
   "devDependencies": {
     "@types/mocha": "5",
@@ -36,8 +36,11 @@
     "typescript": "3"
   },
   "engines": {
-    "node": ">=10.16.0"
+    "node": ">=12.13.0"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "bp:add": "git remote add bp https://github.com/waitingsong/midway-base",
     "bp:sync": "git fetch --all -v && git merge bp/master -m \"Merge remote-tracking branch 'bp/master'\"",
@@ -49,13 +52,15 @@
     "devtest": "cross-env TS_NODE_PROJECT=test/tsconfig.json midway-bin test --ts",
     "debug": "cross-env NODE_ENV=local midway-bin debug --ts",
     "dev": "cross-env NODE_ENV=local midway-bin dev --ts",
-    "lint": "eslint --fix {src,test}/**/*.ts",
+    "lint": "eslint --fix --cache {src,test}/**/*.ts",
+    "lint:nofix": "eslint --cache {src,test}/**/*.ts",
     "link_global": "npm link typescript",
     "release": "standard-version -r",
     "repo:init": "sh .githooks/init-repo.sh",
-    "start": "egg-scripts start --daemon --title=egg-server-midway-base --framework=midway --ts --workers=4",
+    "start": "egg-scripts start --daemon --framework=midway --ts --workers=4",
     "start_build": "npm run clean && npm run build && cross-env NODE_ENV=development midway-bin dev --ts",
-    "stop": "egg-scripts stop --title=egg-server-midway-base",
+    "start_docker": "egg-scripts start --framework=midway --ts --workers=4",
+    "stop": "egg-scripts stop",
     "test": "npm run devtest"
   },
   "midway-bin-clean": [

@@ -32,6 +32,15 @@ describe(filename, () => {
     assert(msg && msg.includes('Hello midwayjs!'))
   })
 
+  it('should GET /ping', async () => {
+    const ret = await app.httpRequest()
+      .get('/ping')
+      .expect(200)
+
+    const msg: string = ret.text
+    assert(msg && msg === 'OK')
+  })
+
   it('should GET /hello', async () => {
     const ret = await app.httpRequest()
       .get('/hello')
