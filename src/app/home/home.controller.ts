@@ -3,6 +3,7 @@ import {
 } from 'midway'
 import { Fetch, RxRequestInit } from '@waiting/egg-fetch'
 import { Jwt } from '@waiting/egg-jwt'
+import { NpmPkg } from '@waiting/shared-types'
 
 
 @provide()
@@ -10,6 +11,7 @@ import { Jwt } from '@waiting/egg-jwt'
 export class HomeController {
 
   constructor(
+    @config() private readonly pkg: NpmPkg,
     @config() private readonly welcomeMsg: string,
     @plugin() private readonly fetch: Fetch,
     @plugin() private readonly jwt: Jwt,
@@ -17,7 +19,11 @@ export class HomeController {
 
   @get('/', { middleware: ['apiMiddleware'] })
   public index(ctx: Context): void {
-    ctx.body = `${this.welcomeMsg} - ${ctx.api.reqTimeStr}`
+    const msg = `${this.welcomeMsg} - ${ctx.api.reqTimeStr}
+pkgName: "${this.pkg.name}"
+pkgVer: "${this.pkg.version}"
+    `
+    ctx.body = msg
   }
 
   @get('/ping')
@@ -27,7 +33,11 @@ export class HomeController {
 
   @get('/hello', { middleware: ['apiMiddleware'] })
   public hello(ctx: Context): void {
-    ctx.body = `${this.welcomeMsg} - ${ctx.api.reqTimeStr}`
+    const msg = `${this.welcomeMsg} - ${ctx.api.reqTimeStr}
+pkgName: "${this.pkg.name}"
+pkgVer: "${this.pkg.version}"
+    `
+    ctx.body = msg
   }
 
   @get('/token')
