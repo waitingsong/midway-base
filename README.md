@@ -21,10 +21,13 @@ Open url and refreseh page:
 - http://localhost:7001/test_sign
 
 
+## publish
+
 ## Deploy
 
 ```bash
-npm run clean && npm run build
+# npm run release major|minor|patch
+npm run clean && npm run build && npm run tar
 npm start
 npm stop
 ```

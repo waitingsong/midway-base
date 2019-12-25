@@ -55,12 +55,14 @@
     "lint": "eslint --fix --cache {src,test}/**/*.ts",
     "lint:nofix": "eslint --cache {src,test}/**/*.ts",
     "link_global": "npm link typescript",
+    "publish": "npm run clean && npm run build && sh .scripts/publish.sh",
     "release": "standard-version -r",
     "repo:init": "sh .githooks/init-repo.sh",
     "start": "egg-scripts start --daemon --framework=midway --ts --workers=4",
     "start_build": "npm run clean && npm run build && cross-env NODE_ENV=development midway-bin dev --ts",
     "start_docker": "egg-scripts start --framework=midway --ts --workers=4",
     "stop": "egg-scripts stop",
+    "tar": "sh .scripts/tar.sh",
     "test": "npm run devtest"
   },
   "midway-bin-clean": [
