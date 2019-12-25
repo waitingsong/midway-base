@@ -20,7 +20,8 @@
     "types" : ["node", "mocha"]
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "packages/*/src/**/*.ts"
   ],
   "exclude": [
     "asset",
