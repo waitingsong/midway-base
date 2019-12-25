@@ -1,11 +1,19 @@
-*.swp
 *.md
+*.swp
 !README.md
 .dockerignore
 .git
 .hg
 .svn
+.vscode
 Dockerfile
-node_modules
+log
+logs
 npm-debug.log
+package-lock.json
+run
+src
+test
+tsconfig.*
 
+node_modules/@types

@@ -20,7 +20,7 @@ git init \
   && echo It may going for a long time. Plese wait... \
   && npm i --loglevel=info \
   && npm run link_global \
-  && git checkout -- .travis.yml appveyor.yml \
+  && git checkout -- .travis.yml \
   && cd .githooks && tsc \
   && node gen-file-from-example.js
 
