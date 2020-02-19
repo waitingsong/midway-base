@@ -31,7 +31,8 @@
         // "${workspaceFolder}/../../node_modules/rxjs/**/*.js",
         "${workspaceFolder}/node_modules/rxjs/**/*.js",
         "<node_internals>/**/*.js"
-      ]
+      ],
+      "timeout": 30000
     },
     {
       "name": "Miday Test",
